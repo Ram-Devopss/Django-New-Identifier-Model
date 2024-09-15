@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News Finder</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        .custom-border {
+            border: 2px solid #007bff;
+            padding: 10px;
+            margin-top: 20px;
+        }
+
+        .containers {
+            border: 1px solid black;
+            box-shadow: 0px 10px 10px gray;
+            border-radius: 20px;
+            margin: auto;
+            padding: 5%;
+            font-weight: 500;
+            margin-top: 20px;
+        }
+
+        /* Added margin for the button */
+        .copy-button {
+            margin-top: 10px;
+        }
+
+        .container {
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h3>Real News</h3>
+                <hr>
+                <p id="real-news"><strong>Scientists confirm that aliens have landed on Earth!,
+                Breaking: New study claims that eating chocolate can make you lose weight!,
+                Government officials caught in massive corruption scandal!,
+                Famous celebrity spotted with a unicorn in their backyard!,
+                Breaking: Giant asteroid on collision course with Earth!</strong></p>
+                <br>
+                <button class="btn btn-primary copy-button" onclick="copyText('real-news')"><i class="far fa-copy"></i> Copy Me</button>
+            </div>
+            <div class="col-md-6">
+                <h3>Fake News</h3>
+                <hr>
+                <p id="fake-news"><strong>Russian warships ready to strike terrorists near Aleppo,nan,"Russian warships ready to strike terrorists near Aleppo 08.11.2016 | Source: Source: Mil.ru Attack aircraft of the Russian aircraft carrier Admiral Kuznetsov get ready to strike terrorists' positions in the vicinity of Aleppo, is to enter Aleppo. ""After the attacks on terrorists' positions, one will have to forget about the support for insurgents from the outside,"" the source said. The Russian group in the Mediterranean Sea consists of the Admiral Kuznetsov aircraft carrier , the heavy nuclear missile cruiser Pyotr Velikiy (Peter the Great) and large anti-submarine ships Severomorsk and Vice-Admiral 
+                20802,"#NoDAPL: Native American Leaders Vow to Stay All Winter, File Lawsuit Against Police",Common Dreams,"Videos #NoDAPL: Native American Leaders Vow to Stay All Winter, File Lawsuit Against Police Amnesty International are sending a delegation of human rights observers to monitor the response of law enforcement
+                </strong></p>
+                <br>
+                <button class="btn btn-primary copy-button" onclick="copyText('fake-news')"><i class="far fa-copy"></i> Copy Me</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <form method="post" action="detect">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="textArea">Hey Type Your News Here:</label> <br>
+                        <label><span class="glyphicon glyphicon-align-justify"></span> Note : Enter fake news headlines separated by commas</label> <br>
+                        <textarea class="form-control custom-border" id="textArea" rows="5" name="textarea"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Find It!</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script>
+        function copyText(id) {
+            var text = document.getElementById(id).innerText;
+            navigator.clipboard.writeText(text)
+                .then(() => alert('Text copied to clipboard'))
+                .catch(err => console.error('Error in copying text: ', err));
+        }
+    </script>
+</body>
+</html>
